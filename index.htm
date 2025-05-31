@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gounder Priyanka - Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap');
+
+  :root {
+    --primary-color: #4a90e2;
+    --secondary-color: lightblue;
+    --accent-color: #1075e6;
+    --text-color: lightblue;
+    --bg-dark: lightblue;
+    --bg-light: #F9F9F9;
+    --nav-height: 60px;
+    --transition-speed: 0.5s;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    scroll-behavior: smooth;
+    position: relative;
+    background-color: #001f3f; /* Navy blue background */
+  }
+
+  /* Canvas background */
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind other content */
+    background-color: #001f3f; /* Ensure canvas bg matches body */
+    display: block;
+  }
+
+  body.light-theme {
+    background: var(--bg-light);
+    color: var(--text-light);
+  }
+
+  .container {
+    position: relative; /* Position relative to canvas */
+    max-width: 900px;
+    background-color: #E0E0E0;
+    margin: 2rem auto 4rem;
+    padding: 2rem 3rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Above canvas */
+  }
+
+  header {
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  header img.photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--primary-color);
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--primary-color);
+      transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    }
+
+  header .header-info {
+    flex: 1;
+    justify-content: center;
+    min-width: 250px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    font-size: 2.5rem;
+  }
+
+  .contact-info {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+  .contact-info a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-speed) ease;
+    }
+    .contact-info a:hover {
+      color: var(--accent-color);
+    }
+
+  nav#navbar {
+    position: sticky;
+    top: 0;
+    background-color: #333333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: var(--nav-height);
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  nav#navbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  nav#navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0 1rem;
+    gap: 1.3rem;
+  }
+
+  nav#navbar li {
+    white-space: nowrap;
+  }
+
+  nav#navbar a {
+    display: block;
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  nav#navbar a:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  nav#navbar a.active {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  section {
+    margin-bottom: 2.8rem;
+  }
+
+  section h2 {
+    color: #1075e6;
+    border-left: 6px solid var(--accent-color);
+    padding-left: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  ul li {
+    margin-bottom: 0.6rem;
+  }
+
+  .experience-job {
+    background: lightblue;
+    color: #001f3f;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    box-shadow: inset 0 0 5px lightblue;
+  }
+
+  .job-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #001f3f;
+  }
+
+  .job-date {
+    font-size: 0.85rem;
+    color: #001f3f;
+  }
+
+  .education-item {
+    margin-bottom: 1rem;
+    color:#001f3f;
+    background: lightblue;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px lightblue;
+  }
+
+  
+  .google-clouds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+
+  
+  .google-clouds li {
+    background:#001f3f;
+    color: #001f3f;
+    padding: 0.4rem 0.9rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .certificates-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .certificates-gallery figure {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    background: white;
+    transition: transform 0.3s ease;
+  }
+
+  .certificates-gallery figure:hover {
+    transform: scale(1.05);
+  }
+
+  .certificates-gallery img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .certificates-gallery figcaption {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: var(--secondary-color);
+  }
+
+  .about {
+    background: #1075e6;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    box-shadow: inset 0 0 5px white;
+  }
+
+  .about-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #001f3f;
+  }
+
+  .about-item {
+    margin-bottom: 1rem;
+    color: #1075e6;
+  }
+
+  footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 1rem 1.5rem 2rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* Skills Section Styles */
+  #skills {
+    max-width: 700px;
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 77, 128, 0.15);
+  }
+
+  #skills h2 {
+    color: #004d80;
+    font-weight: 700;
+    font-size: 2rem;
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    background-color: #c4dafb;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0, 77, 128, 0.25);
+    font-weight: 600;
+    color: #0a3d62;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    cursor: default;
+  }
+
+  .skill-item:hover {
+    background-color: #9bd1ff;
+  }
+
+  .skill-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.6rem;
+  }
+
+  .emoji {
+    font-size: 1.4rem;
+    margin-right: 0.6rem;
+  }
+
+  .certificates-list,
+  .google-clouds {
+    justify-content: center;
+
+.certificates-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.certificate-frame {
+  position: relative;
+  border: 5px solid var(--primary-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-frame:hover {
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.6);
+}
+
+.title-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(74, 144, 226, 0.85);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.6rem 0.75rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  user-select: none;
+}
+
+.certificate-frame:hover .title-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.btn-maximize {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.btn-maximize:hover {
+  opacity: 1;
+}
+
+/* Maximized certificate modal */
+#certificate-maximize {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#certificate-maximize.active {
+  display: flex;
+}
+
+#certificate-maximize .content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInScale 0.4s ease forwards;
+}
+
+#certificate-maximize img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#certificate-maximize .caption {
+  padding: 1rem 2rem 2rem 2rem;
+  color: #001f3f;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-align: center;
+  user-select: none;
+}
+
+#certificate-maximize .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#certificate-maximize .close-button:hover {
+  background: var(--accent-color);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+</style>
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <header>
+    <img src="profile.jpg" alt="Gounder Priyanka" class="photo" />
+
+      <div class="header-info">
+        <h1>GOUNDER PRIYANKA</h1>
+        <div class="contact-info">
+          <div>📞 9313761702</div>
+          <div><a href="mailto:gounderpriyanka4@gmail.com">✉️ gounderpriyanka4@gmail.com</a></div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/gounder-priyanka-811108290" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Gounderpriyanka" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/infinity.lo0p?igsh=a2ozb3BhbmUwOXIw" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+    </div>
+  </header>
+
+  <nav id="navbar" aria-label="Primary Navigation">
+    <ul>
+      <li><a href="#about" class="nav-link active">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#certificates" class="nav-link">Certificates</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#google-clouds" class="nav-link">Google Clouds</a></li>
+    </ul>
+  </nav>
+
+  <main class="container" role="main">
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <div class="experience-job">
+        <div class="about-title">
+          <p><span class="emoji">🚀</span> BCA Student | Aspiring Full-Stack Developer | Internship Seeker</p>
+        </div>
+        <p>
+          Hey! I’m Priyanka, a tech enthusiast and BCA student passionate about building things that live on the internet. I thrive on turning ideas into functional, user-friendly solutions through code. Currently, I’m sharpening my skills in front-end development (HTML/CSS/JS) and exploring Python and C++ to strengthen my problem-solving and OOP fundamentals.
+        </p>
+        <ul>
+          <li><span class="emoji">💻</span> Tech Stack: HTML, CSS, JavaScript, Python (basics), C++ (OOP)</li>
+          <li><span class="emoji">🔍</span> Problem-Solver: Love tackling challenges with logical, efficient solutions.</li>
+          <li><span class="emoji">🌱</span> Eager Learner: Constantly exploring new tech and frameworks to level up.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <div class="experience-job">
+        <div class="job-title">Accountant</div>
+        <div class="job-date">📅 Jun 2024 - Jan 2025</div>
+        <ul>
+          <li><span class="emoji">💼</span> Managed <strong>accounts payable</strong> &amp; <strong>accounts receivable</strong></li>
+          <li><span class="emoji">🏦</span> Reconciled bank statements with precision</li>
+          <li><span class="emoji">🧾</span> Handled billing operations and booked invoices</li>
+          <li><span class="emoji">💻</span> Expertly used <strong>Logi-Sys software</strong> for financial management</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <div class="education-item">
+        <strong>SSC</strong> at Jay Somnath School – 72%
+      </div>
+      <div class="education-item">
+        <strong>HSC</strong> at Doon International School – 43%
+      </div>
+      <div class="education-item">
+        <strong>Bachelor of Computer Application</strong> at Silver Oak University – 8.78 SPI
+      </div>
+    </section>
+
+    <section id="skills-heading">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /> JavaScript
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" /> HTML5
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" /> CSS3
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" /> Node.js
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" /> GitHub
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /> Python
+        </li>
+        <li class="skill-item">
+          <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /> MongoDB
+        </li>
+        <li class="skill-item">
+          <span class="emoji">🎨</span> UI/UX Design
+        </li>
+        <li class="skill-item">
+          <span class="emoji">🛠️</span> Debugging
+        </li>
+        <li class="skill-item">
+          <span class="emoji">💡</span> Problem Solving
+        </li>
+      </ul>
+    </section>
+
+    <section id="certificates" aria-labelledby="certificates-heading">
+  <h2 id="certificates-heading">Certificates ☁️</h2>
+  <div class="experience-job">
+
+  <div class="certificates-gallery" aria-label="Gallery of Certificates">
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="Tally Prime Certificate">
+      <img src="tallyprime.jpg" alt="Tally Prime Certificate" />
+      <div class="title-overlay">Tally Prime</div>
+      <button class="btn-maximize" aria-label="Maximize Tally Prime Certificate" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="Course on Computer Concept Certificate">
+      <img src="CCC.jpg" alt="Course on Computer Concept Certificate" />
+      <div class="title-overlay">Course on Computer Concept (CCC)</div>
+      <button class="btn-maximize" aria-label="Maximize Course on Computer Concept Certificate" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="PostgreSQL Training Certificate">
+      <img src="rdbms.jpg" alt="PostgreSQL Training Certificate" />
+      <div class="title-overlay">RDBMS PostgreSQL Training</div>
+      <button class="btn-maximize" aria-label="Maximize PostgreSQL Training Certificate" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="Java Training Certificate">
+      <img src="java.jpg" alt="Java Training Certificate" />
+      <div class="title-overlay">Java Training</div>
+      <button class="btn-maximize" aria-label="Maximize Java Training Certificate" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="AWS INFRASTRUCTURE CAMP">
+      <img src="AWS.jpg" alt="AWS Infrastructure Camp" />
+      <div class="title-overlay">AWS INFRASTRUCTURE CAMP</div>
+      <button class="btn-maximize" aria-label="Maximize AWS Infrastructure Camp" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="Gen AI Study Jams Certificate">
+      <img src="Gen AI.jpg" alt="Gen AI Study Jams Certificate" />
+      <div class="title-overlay">Gen AI Study Jams (Google Cloud)</div>
+      <button class="btn-maximize" aria-label="Maximize Gen AI Study Jams Certificate" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    <figure class="certificate-frame" tabindex="0" role="group" aria-label="FULL STACK INNOVATION">
+      <img src="Fullstack.jpg" alt="FULL STACK INNOVATION" />
+      <div class="title-overlay">FULL STACK INNOVATION</div>
+      <button class="btn-maximize" aria-label="Maximize FULL STACK INNOVATION" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+     <figure class="certificate-frame" tabindex="0" role="group" aria-label="Tech Verse">
+      <img src="techverse.jpg" alt="Tech Verse" />
+      <div class="title-overlay">Tech Verse</div>
+      <button class="btn-maximize" aria-label="Maximize Tech Verse" title="Maximize"><i class="fas fa-expand"></i></button>
+    </figure>
+    
+  </div>
+  </div>
+</section>
+
+<!-- Maximized certificate modal -->
+<div id="certificate-maximize" role="dialog" aria-modal="true" aria-labelledby="maximize-caption" tabindex="-1">
+  <div class="content">
+    <button class="close-button" aria-label="Close certificate display">&times;</button>
+    <img src="" alt="" id="maximized-image" />
+    <div class="caption" id="maximize-caption"></div>
+  </div>
+</div>
+
+
+    <section id="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects 💻</h2>
+      <div class="experience-job">
+      
+      <ul>
+        <li>MY PERSONAL Portfolio</li>
+        
+      </ul>
+      </div>
+    </section>
+
+    <section id="google-clouds" aria-label="google-clouds-heading">
+      <h2 id="google-clouds-heading">Google Cloud Achievements ☁️</h2>
+      <div class="experience-job">
+      <p>🚀 Just stacked 15+ GCP badges in record time! From AI magic ✨ to cloud infrastructure ⚙️, here’s the lightning-round version:</p>
+      <p>🤖 <strong>AI/ML Pro</strong><br>
+      ▸ Built GenAI apps w/ Gemini + Streamlit<br>
+      ▸ Taught AI to see (Vision API) and hear (Speech API)<br>
+      ▸ Mastered prompt design like an AI whisperer</p>
+      <p>🛠️ <strong>Cloud Ninja</strong><br>
+      ▸ Deployed apps 3 ways (App Engine, Cloud Run)<br>
+      ▸ Made APIs talk (API Gateway, Pub/Sub)<br>
+      ▸ Tamed data beasts (Dataplex, Looker)</p>
+      <p>📊 <strong>Bonus Skills</strong><br>
+      ▸ Google Sheets ≠ just for groceries<br>
+      ▸ Cloud Storage > my messy Downloads folder</p>
+      <p>🔥 <strong>Why It Matters?</strong><br>
+      Real skills > Certificates. Now applying this to:<br>
+      Smarter cloud projects<br>
+      AI-powered solutions<br>
+      Less "Why is this error?" and more "I fixed it!"</p>
+      <p>Drop a ♻️ if you’ve also gone cloud-cert-crazy!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 Gounder Priyanka Portfolio
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('backgroundCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 4 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(126, 200, 227, 0.8)'; // Light blue
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    const particleCount = 80;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 120) {
+            ctx.strokeStyle = `rgba(126, 200, 227, ${1 - distance / 120})`; // Light blue
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+
+
+
+const gallery = document.querySelector('.certificates-gallery');
+const maximizeModal = document.getElementById('certificate-maximize');
+const maximizedImage = document.getElementById('maximized-image');
+const maximizeCaption = document.getElementById('maximize-caption');
+const closeButton = maximizeModal.querySelector('.close-button');
+
+// When maximize button is clicked
+gallery.querySelectorAll('.btn-maximize').forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent event bubbling to figure
+
+    const figure = e.target.closest('.certificate-frame');
+    if (!figure) return;
+
+    const img = figure.querySelector('img');
+    const title = figure.querySelector('.title-overlay').textContent;
+
+    maximizedImage.src = img.src;
+    maximizedImage.alt = img.alt;
+    maximizeCaption.textContent = title;
+
+    maximizeModal.classList.add('active');
+    maximizeModal.focus();
+  });
+});
+
+// Close modal on close button click
+closeButton.addEventListener('click', () => {
+  maximizeModal.classList.remove('active');
+  maximizedImage.src = '';
+  maximizeCaption.textContent = '';
+});
+
+// Close modal on click outside content or Escape key
+maximizeModal.addEventListener('click', e => {
+  if(e.target === maximizeModal){
+    closeButton.click();
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && maximizeModal.classList.contains('active')){
+    closeButton.click();
+  }
+});
+
+
+
+
+
+
+  </script>
+
+
+</body>
+</html>
+
