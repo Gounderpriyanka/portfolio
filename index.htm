@@ -206,23 +206,31 @@
   }
 
   /* Skills */
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-  }
-  .skill-item {
-    background: #e0e7ff;
-    color: #3730a3;
-    font-weight: 600;
-    padding: 0.6rem 1.2rem;
-    border-radius: 2rem;
-    box-shadow: 0 5px 10px rgb(99 102 241 / 0.3);
-    user-select: none;
-  }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+    }
+    .skill-item {
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      box-shadow: 0 5px 10px rgb(99 102 241 / 0.3);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+    }
 
   /* Certificates Gallery */
   .certificates-gallery {
@@ -359,49 +367,58 @@
   </header>
 
   <main>
-    <section class="hero" id="home" tabindex="0">
-      <h1>Hello, I’m Priyanka</h1>
-      <p>Aspiring Full-Stack Developer and Google Cloud GenAI Study Jam Graduate driving innovation with cloud computing &amp; AI.</p>
-      <div class="badge" aria-label="Google Cloud GenAI Badge">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L3 6v6c0 5.25 3.75 9.75 9 10 5.25-.25 9-4.75 9-10V6l-9-4zm0 2.25l6 2.5v3.5a7.496 7.496 0 0 1-12 6.4V10.8L12 4.25zm0 13.5c-3.97 0-7.18-3.21-7.18-7.18 0-.13.01-.26.02-.39L15 13v2.5c0 .97-.79 1.75-1.75 1.75z"/></svg>
-        Google Cloud GenAI
-      </div>
-    </section>
+<section class="hero" id="home" tabindex="0">
+  <h1>Hello, I’m Priyanka</h1>
+  <p>Aspiring Full-Stack Developer and Google Cloud GenAI Study Jam Graduate driving innovation with cloud computing &amp; AI.</p>
+  <a href="https://www.cloudskillsboost.google/public_profiles/41405d57-7c7c-44f8-9057-088181c63bae" target="_blank" rel="noopener noreferrer" aria-label="Google Cloud GenAI Badge Link" class="badge" style="cursor:pointer; display: inline-flex; align-items: center; gap: 0.8rem; background: white; padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 700; font-size: 1.2rem; color: #2563eb; box-shadow: 0 6px 16px rgb(74 144 226 / 0.4); text-decoration: none;">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="width: 28px; height: 28px; fill: #2563eb;">
+      <path d="M12 2L3 6v6c0 5.25 3.75 9.75 9 10 5.25-.25 9-4.75 9-10V6l-9-4zm0 2.25l6 2.5v3.5a7.496 7.496 0 0 1-12 6.4V10.8L12 4.25zm0 13.5c-3.97 0-7.18-3.21-7.18-7.18 0-.13.01-.26.02-.39L15 13v2.5c0 .97-.79 1.75-1.75 1.75z"/>
+    </svg>
+    Google Cloud GenAI
+  </a>
+</section>
 
-    <section id="about" tabindex="0" aria-labelledby="about-heading">
-      <h2 id="about-heading">About Me</h2>
-      <div class="info-box">
-        <p>🚀 BCA Student | Aspiring Full-Stack Developer | Internship Seeker</p>
-        <p>
-          Hey! I’m Priyanka, a tech enthusiast and BCA student passionate about building things that live on the internet. I thrive on turning ideas into user-friendly digital experiences through code. Currently sharpening skills in front-end (HTML/CSS/JS) and exploring Python &amp; C++ fundamentals.
-        </p>
-      </div>
-    </section>
 
-    <section id="experience" tabindex="0" aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience</h2>
-      <div class="info-box" role="article">
-        <div class="item-title">Accountant</div>
-        <div class="item-date">Jun 2024 - Jan 2025</div>
-        <ul>
-          <li>Managed <strong>accounts payable</strong> &amp; <strong>accounts receivable</strong></li>
-          <li>Reconciled bank statements with precision</li>
-          <li>Handled billing operations and booked invoices</li>
-          <li>Expertly used <strong>Logi-Sys software</strong> for financial management</li>
-        </ul>
-      </div>
-    </section>
+    <section id="about" tabindex="0" aria-labelledby="about-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #e0f2fe; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3); text-align: center; color: #0369a1; font-family: 'Poppins', sans-serif;">
+  <h2 id="about-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; user-select: none;">☁️ About Me</h2>
+  <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;">
+    Hi! I’m <strong>Priyanka</strong>, an aspiring Cloud Developer ☁️ and Python enthusiast 🐍 with a passion for mastering Data Structures & Algorithms 📚.
+  </p>
+  <p style="font-size: 1.15rem; line-height: 1.6; color: #075985; user-select: text;">
+    I specialize in building AI-powered applications using Google Cloud’s GenAI tools 🤖 like Gemini and Streamlit. I enjoy turning complex problems into elegant cloud solutions 🚀 and continuously expanding my skills through hands-on projects and certifications.
+  </p>
+  <p style="font-size: 1.15rem; line-height: 1.6; color: #075985; user-select: text; margin-top: 1rem;">
+    Proud member since 2024 | Gold League ⭐ with 22,095 points earned through dedication and real-world cloud experience.
+  </p>
+</section>
 
-    <section id="education" tabindex="0" aria-labelledby="education-heading">
-      <h2 id="education-heading">Education</h2>
-      <div class="info-box" role="article">
-        <div><strong>SSC</strong> at Jay Somnath School – 72%</div>
-        <div><strong>HSC</strong> at Doon International School – 43%</div>
-        <div><strong>Bachelor of Computer Application</strong> at Silver Oak University – 8.78 SPI</div>
-      </div>
-    </section>
 
-    <section id="skills" tabindex="0" aria-labelledby="skills-heading">
+   <section id="experience" tabindex="0" aria-labelledby="experience-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #f0f9ff; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2); color: #0c4a6e; font-family: 'Poppins', sans-serif; text-align: center;">
+  <h2 id="experience-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; user-select: none;">💼 Experience</h2>
+  <div role="article" style="text-align: left; max-width: 600px; margin: 0 auto;">
+    <div style="font-weight: 700; font-size: 1.5rem; margin-bottom: 0.25rem; user-select: none;">Accountant @ Regius Cargo International Company</div>
+    <div style="font-size: 1rem; color: #2563eb; margin-bottom: 1rem; user-select: none;">June 2024 – November 2024</div>
+    <ul style="font-size: 1.15rem; line-height: 1.6; padding-left: 1.2rem; color: #134e8a;">
+      <li>📄 Managed daily accounting tasks including invoicing, billing, and ledger maintenance</li>
+      <li>📊 Assisted in financial record keeping and report generation</li>
+      <li>🤝 Coordinated with clients and vendors for smooth transaction processing</li>
+      <li>💻 Used <strong>Tally Prime</strong> for accounting and inventory management</li>
+    </ul>
+  </div>
+</section>
+
+
+    <section id="education" tabindex="0" aria-labelledby="education-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #f0f9ff; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2); color: #0c4a6e; font-family: 'Poppins', sans-serif; text-align: center;">
+  <h2 id="education-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; user-select: none;">🎓 Education</h2>
+  <div role="article" style="text-align: left; max-width: 600px; margin: 0 auto; font-size: 1.15rem; line-height: 1.6; color: #134e8a;">
+    <p>📘 <strong>SSC</strong> at Jay Somnath School – 72%</p>
+    <p>📗 <strong>HSC</strong> at Doon International School – 43%</p>
+    <p>🎓 <strong>Bachelor of Computer Application</strong> at Silver Oak University – 8.91 CGPA</p>
+  </div>
+</section>
+
+
+  <section id="skills" tabindex="0" aria-labelledby="skills-heading">
       <h2 id="skills-heading">Skills</h2>
       <ul class="skills-list">
         <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /> JavaScript</li>
@@ -466,3 +483,4 @@
   </footer>
 </body>
 </html>
+
