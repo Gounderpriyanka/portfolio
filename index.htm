@@ -70,12 +70,14 @@ body.dark .background {
   animation: float 60s linear infinite;
 }
 .cloud {
-  background: url('https://i.ibb.co/6nbk1gf/cloud.png') no-repeat center/contain;
+  background: url('https://png.pngtree.com/png-vector/20240327/ourmid/pngtree-cloud-computing-technology-concept-png-image_12229091.png') no-repeat center/contain;
   width: 200px; height: 120px;
+    animation-duration: 4s;
 }
 .bubble {
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0));
+   animation-duration: 3s;  
 }
 @keyframes float {
   0% { transform: translateY(100vh) translateX(0); opacity: 0; }
@@ -101,9 +103,6 @@ nav ul { list-style: none; display: flex; gap: 1.5rem; }
 nav a { color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
 nav a:hover { color: var(--accent); }
 
-
-
-
 /* Theme Toggle */
 .theme-toggle {
   background: none; border: none; font-size: 1.5rem;
@@ -114,6 +113,7 @@ nav a:hover { color: var(--accent); }
 
 /* ===== HERO ===== */
 .hero {
+  position: relative;
   background: var(--hero-gradient);
   color: #fff;
   text-align: center;
@@ -168,10 +168,11 @@ nav a:hover { color: var(--accent); }
 .social-links a[href*="instagram"] { color: #e1306c; }
 
 /* ===== SECTIONS ===== */
-section { padding: 4rem 2rem; text-align: center; }
+section { 
+scroll-snap-align: start; 
+
+padding: 4rem 2rem; text-align: center; }
 h2 { font-size: 2.6rem; color: var(--accent); margin-bottom: 2rem; }
-
-
 
 /* ===== ABOUT ===== */
 #about {
@@ -247,6 +248,24 @@ body.dark .skill-item { background: #1e293b; color: #e0e7ff; }
 .project-card:hover { transform: translateY(-6px); }
 .project-title { color: var(--accent); font-size: 1.5rem; margin-bottom: 0.5rem; }
 
+/* mini canvas styling */
+.mini-canvas { width: 100%; height: 220px; display: block; border-radius: 10px; background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05)); cursor: pointer; }
+
+/* modal styling */
+.modal { position: fixed; inset: 0; display: none; align-items:center; justify-content:center; background:rgba(2,6,23,0.7); z-index:1200; }
+.modal.open { display:flex; }
+.modal .panel { width:95%; max-width:1000px; background: #fff; border-radius:10px; overflow:hidden; }
+.modal .panel.dark { background: #06132a; color:#dbeafe; }
+
+/* hero canvas overlay */
+.hero-canvas { position: absolute; inset: 0 0 auto 0; height: 420px; pointer-events: auto; border-radius: 0 0 3rem 3rem; z-index: 1; }
+
+/* keep hero texts above canvas */
+.hero > * { position: relative; z-index: 30; }
+
+/* progress label */
+#progressLabel { position: absolute; right: 28px; bottom: 18px; z-index: 40; background: rgba(0,0,0,0.35); color:#fff; padding:6px 10px; border-radius:8px; font-weight:600; }
+
 /* ===== GOOGLE CLOUD ===== */
 #google-clouds {
   background: var(--card-bg);
@@ -290,8 +309,10 @@ footer {
   font-weight: 500;
 }
 
-
-
+@media (max-width:980px){
+  .hero-canvas { height: 320px; }
+  .mini-canvas { height: 180px; }
+}
 </style>
 </head>
 <body>
@@ -314,21 +335,28 @@ footer {
 
 <!-- Hero -->
 <section class="hero">
-    <h1><span class="typing">Hello, I’m Priyanka 👩‍💻</span></h1>
-  <p>Aspiring Full-Stack Developer and Google Cloud GenAI Study Jam Graduate driving innovation with cloud computing </p>
+  <h1><span class="typing">Hi!   I’m Priyanka 👩‍💻</span></h1>
+ <p>Aspiring Full-Stack Developer and Google Cloud GenAI Study Jam Graduate </p>
+ <p>driving innovation with cloud computing &amp; AI.</p>
   <a href="https://www.cloudskillsboost.google/public_profiles/41405d57-7c7c-44f8-9057-088181c63bae" class="btn-primary" target="_blank">View Google Cloud Profile</a>
 
   <div class="social-links">
     <a href="https://www.linkedin.com/in/gounder-priyanka-811108290" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
     <a href="https://github.com/Gounderpriyanka" target="_blank"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.instagram.com/infinity.lo0p?igsh=a2ozb3BhbmUwOXIw" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.instagram.com/infinity.lo0p?igsh=a2ozb3BhbmUwOXIw/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
   </div>
+
 </section>
 
 <!-- About -->
 <section id="about">
   <h2>☁️ About Me</h2>
-  <p>A passionate Cloud & Web Developer who loves blending AI with the web. Skilled in building cloud-integrated, AI-powered web apps using Python, JavaScript, Streamlit, and Google Cloud tools.</p>
+ <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;">
+     An aspiring Cloud Developer ☁️ and Python enthusiast 🐍 with a passion for mastering Data Structures & Algorithms 📚.
+  </p>
+  <p style="font-size: 1.15rem; line-height: 1.6; color: #075985; user-select: text;">
+    I specialize in building AI-powered applications using Google Cloud’s GenAI tools 🤖 like Gemini and Streamlit. I enjoy turning complex problems into elegant cloud solutions 🚀 and continuously expanding my skills through hands-on projects and certifications.
+  </p>
 </section>
 
 <!-- Experience -->
@@ -336,14 +364,14 @@ footer {
   <h2>💼 Experience</h2>
   <div class="exp-item">
     <h3>Accounts & Inventory Assistant | Regius Cargo International Company</h3>
-    <p>August 2024 – January 2025</p>
+    <p>October 2024 – January 2025</p>
     <ul>
-      <li>Managed financial records and processed invoices using Tally Prime.</li>
-      <li>Coordinated with clients and vendors for smooth operations.</li>
-      <li>Improved accuracy in transaction processing and reporting.</li>
-    </ul>
+     <li>📄 Managed daily accounting tasks including invoicing, billing, and ledger maintenance</li>
+      <li>📊 Assisted in financial record keeping and report generation</li>
+      <li>🤝 Coordinated with clients and vendors for smooth transaction processing</li>
+      <li>💻 Used <strong>Logi-sys software </strong> for accounting and inventory management</li>
   </div>
-</section>
+</section>  
 
 <!-- Education -->
 <section id="education">
@@ -367,6 +395,9 @@ footer {
     <div class="skill-item"><i class="devicon-mongodb-plain colored skill-icon"></i> MongoDB</div>
     <div class="skill-item"><i class="devicon-github-original colored skill-icon"></i> GitHub</div>
     <div class="skill-item"><i class="devicon-googlecloud-plain colored skill-icon"></i> Google Cloud</div>
+    <div class="skill-item"> 🎨 UI/UX Design</div>
+    <div class="skill-item">🛠️ Debugging</div>
+    <div class="skill-item">💡 Problem Solving</div>
   </div>
 </section>
 
@@ -388,10 +419,12 @@ footer {
     <div class="project-card">
       <h3 class="project-title">AI Document Analyzer</h3>
       <p class="project-desc">Built an intelligent web app using Python, Streamlit, and Gemini API to summarize, analyze sentiment, and extract document insights.</p>
+     
     </div>
     <div class="project-card">
       <h3 class="project-title">Personal Portfolio</h3>
       <p class="project-desc">Developed a responsive portfolio showcasing my AI and web development skills using HTML, CSS, and JavaScript.</p>
+      
     </div>
   </div>
 </section>
@@ -416,10 +449,22 @@ footer {
   © 2025 Gounder Priyanka | Built with 💙 using HTML, CSS & JS
 </footer>
 
-<!-- FontAwesome -->
-<!-- Updated Font Awesome CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+<!-- Modal for full previews -->
+<div class="modal" id="previewModal" aria-hidden="true">
+  <div class="panel" id="modalPanel">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.06)">
+      <strong id="modalTitle">Preview</strong>
+      <button id="closePreview" style="background:none;border:none;font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div style="height:560px;background:#0b1220;display:flex;align-items:center;justify-content:center;">
+      <canvas id="modalCanvas" style="width:100%;height:100%;display:block"></canvas>
+    </div>
+    <div style="padding:12px 16px;color:#666">Model preview. Close to return.</div>
+  </div>
+</div>
 
+<!-- FontAwesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
 
 <script>
 // === Dark/Light Mode ===
@@ -439,7 +484,13 @@ toggleBtn.addEventListener("click", () => {
 
 // ===== Floating Clouds and Bubbles =====
 function createCloudsAndBubbles() {
-  const bg = document.querySelector(".background");
+  const bg = document.querySelector(".background") || (() => {
+    const el = document.createElement('div');
+    el.className = 'background';
+    document.body.appendChild(el);
+    return el;
+  })();
+
   for (let i = 0; i < 6; i++) {
     const cloud = document.createElement("div");
     cloud.classList.add("cloud");
@@ -458,8 +509,114 @@ function createCloudsAndBubbles() {
 }
 createCloudsAndBubbles();
 
+// === Hero Scroll Animation ===
+let renderer, scene, camera, clock, mixer, heroModel;
+const heroCanvas = document.getElementById('heroCanvas');
+
+function initHero() {
+  renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  scene = new THREE.Scene();
+  clock = new THREE.Clock();
+
+  const w = heroCanvas.clientWidth || 1200;
+  const h = heroCanvas.clientHeight || 420;
+
+  camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+  camera.position.set(0, 1.6, 3.8);
+
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+  scene.add(hemi);
+  const dir = new THREE.DirectionalLight(0xffffff, 0.9);
+  dir.position.set(5, 10, 2);
+  scene.add(dir);
+
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(40, 40),
+    new THREE.MeshStandardMaterial({ color: 0x031028, roughness: 1 })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -1.7;
+  scene.add(ground);
+
+  const loader = new THREE.GLTFLoader();
+  loader.load(HERO_MODEL_URL, (gltf) => {
+    heroModel = gltf.scene;
+    heroModel.position.set(0, -1.7, 0);
+    scene.add(heroModel);
+
+    if (gltf.animations.length) {
+      mixer = new THREE.AnimationMixer(heroModel);
+      const action = mixer.clipAction(THREE.AnimationClip.findByName(gltf.animations, WALK_ANIMATION_NAME) || gltf.animations[0]);
+      action.play();
+      action.paused = true;
+      heroModel.userData = { walkDuration: action.getClip().duration, walkAction: action };
+    }
+  });
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enablePan = false;
+  controls.enableZoom = false;
+  controls.enableDamping = true;
+  controls.minPolarAngle = Math.PI / 4;
+  controls.maxPolarAngle = Math.PI / 2.4;
+
+  onHeroResize();
+  animateHero();
+}
+
+function animateHero() {
+  requestAnimationFrame(animateHero);
+  if (mixer) mixer.update(clock.getDelta());
+  renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight, false);
+  renderer.render(scene, camera);
+}
+
+function onHeroResize() {
+  const w = heroCanvas.clientWidth || 1200;
+  const h = heroCanvas.clientHeight || 420;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+}
+window.addEventListener('resize', onHeroResize);
+
+function updateByScroll() {
+  const docH = document.body.scrollHeight - window.innerHeight;
+  const scroll = docH > 0 ? window.scrollY / docH : 0;
+  const percent = Math.min(1, Math.max(0, scroll));
+
+  if (heroModel?.userData?.walkAction) {
+    const action = heroModel.userData.walkAction;
+    const dur = heroModel.userData.walkDuration;
+    action.time = dur * percent;
+    action.getMixer().setTime(action.time);
+  }
+
+  const start = new THREE.Vector3(0, 1.6, 3.8);
+  const end = new THREE.Vector3(0, 1.1, 1.8);
+  const camPos = new THREE.Vector3().lerpVectors(start, end, percent);
+  camera.position.lerp(camPos, 0.12);
+  camera.lookAt(0, 0.4, 0);
+}
+
+initMiniPreviews();
+updateByScroll();
+
+// Fix unwanted auto-scroll on first load
+window.addEventListener("load", () => {
+  history.replaceState(null, null, " ");
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+    updateByScroll();
+  }, 50);
+});
+
+/* ==========================
+   Mini Project Previews
+========================== */
+
+
 </script>
 </body>
 </html>
-
-
