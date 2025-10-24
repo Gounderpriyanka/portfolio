@@ -3,484 +3,461 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gounder Priyanka - Cloud Computing Portfolio</title>
+<title>Gounder Priyanka | Cloud & Web Developer Portfolio</title>
+
+<!-- Font Awesome and Devicon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet" />
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet" />
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  transition: background 0.6s ease, color 0.6s ease;
+  
+}
 
-  /* Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    height: 100%;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    background: #ffffff;
-    color: #6b7280; /* Neutral gray */
-  }
+/* ===== THEMES ===== */
+:root {
+  --bg: #ffffff;
+  --text: #374151;
+  --accent: #2563eb;
+  --card-bg: #f9fafb;
+  --shadow: rgba(0,0,0,0.1);
+  --hero-gradient: linear-gradient(135deg, #4a90e2, #7ad6ff);
+}
+body.dark {
+  --bg: #0f172a;
+  --text: #e2e8f0;
+  --accent: #60a5fa;
+  --card-bg: #1e293b;
+  --shadow: rgba(255,255,255,0.1);
+  --hero-gradient: linear-gradient(135deg, #1e3a8a, #0f172a);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  
+}
 
-  body {
-    min-height: 100vh;
-  }
+/* ===== ANIMATED BACKGROUND ===== */
+.background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background: linear-gradient(180deg, #7ad6ff 0%, #e0f2fe 100%);
+  animation: gradientShift 20s ease infinite alternate;
+}
+body.dark .background {
+  background: radial-gradient(circle at top, #0f172a 0%, #1e3a8a 100%);
+}
+@keyframes gradientShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(60deg); }
+}
+.cloud, .bubble {
+  position: absolute;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: float 60s linear infinite;
+}
+.cloud {
+  background: url('https://i.ibb.co/6nbk1gf/cloud.png') no-repeat center/contain;
+  width: 200px; height: 120px;
+}
+.bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0));
+}
+@keyframes float {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-20vh) translateX(50vw); opacity: 0; }
+}
 
-  a {
-    color: #1f2937;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  a:hover, a:focus {
-    color: #111827;
-  }
+/* ===== HEADER ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+body.dark header { background: rgba(15,23,42,0.9); }
+.logo { font-weight: 800; font-size: 1.7rem; color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav a { color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+nav a:hover { color: var(--accent); }
 
-  /* Sticky Header */
-  header {
-    position: sticky;
-    top: 0;
-    background: white;
-    box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
-    z-index: 999;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
-  .logo {
-    font-weight: 700;
-    font-size: 1.75rem;
-    color: #111827;
-    user-select: none;
-  }
 
-  nav ul {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  nav a {
-    font-size: 1rem;
-    color: #374151;
-    padding: 0.25rem 0;
-    border-bottom: 3px solid transparent;
-  }
-  nav a:hover, nav a:focus {
-    border-color: #2563eb;
-    color: #2563eb;
-    outline: none;
-  }
-  nav a.active {
-    color: #2563eb;
-    border-color: #2563eb;
-    font-weight: 700;
-  }
 
-  /* Each Fullscreen Section */
-  section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-  }
+/* Theme Toggle */
+.theme-toggle {
+  background: none; border: none; font-size: 1.5rem;
+  color: var(--accent); cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.theme-toggle:hover { transform: rotate(20deg); }
 
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #4a90e2 0%, #7ad6ff 100%);
-    color: white;
-    border-radius: 0.75rem;
-    padding: 4rem 3rem 5rem;
-    box-shadow: 0 20px 40px rgb(26 115 232 / 0.3);
-    max-width: 900px;
-    position: relative;
-  }
-  .hero h1 {
-    font-weight: 800;
-    font-size: 4rem;
-    line-height: 1.05;
-    margin-bottom: 1rem;
-    user-select: none;
-  }
-  .hero p {
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    user-select: none;
-  }
-  .hero .btn-primary {
-    background-color: #1e40af;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border: none;
-    border-radius: 0.6rem;
-    cursor: pointer;
-    box-shadow: 0 8px 16px rgb(30 64 175 / 0.4);
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  .hero .btn-primary:hover,
-  .hero .btn-primary:focus {
-    background-color: #1e3a8a;
-    outline: none;
-  }
-  .hero .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #2563eb;
-    box-shadow: 0 6px 16px rgb(74 144 226 / 0.4);
-    user-select: none;
-  }
-  .hero .badge svg {
-    width: 28px;
-    height: 28px;
-    fill: #2563eb;
-  }
+/* ===== HERO ===== */
+.hero {
+  background: var(--hero-gradient);
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+  border-radius: 0 0 3rem 3rem;
+  box-shadow: 0 15px 35px rgba(37,99,235,0.3);
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  min-height: 3.5rem;
+}
+.typing {
+  border-right: 3px solid #facc15;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 3s steps(10, end) infinite alternate, blink 0.7s infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent; } }
 
-  /* Section Titles */
-  h2 {
-    font-weight: 700;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #111827;
-    user-select: none;
-  }
+.hero p { font-size: 1.3rem; margin: 1.5rem 0; }
+.hero .btn-primary {
+  background: #facc15;
+  color: #1e3a8a;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero .btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(250,204,21,0.4); }
 
-  /* Info boxes */
-  .info-box {
-    background: white;
-    padding: 2rem 3rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 12px 24px rgb(0 0 0 / 0.06);
-    max-width: 700px;
-    color: #4b5563;
-    user-select: text;
-  }
-  .info-box p {
-    font-size: 1.15rem;
-    margin-top: 0;
-    line-height: 1.6;
-  }
-  .info-box ul {
-    padding-left: 1.5rem;
-    margin-top: 1rem;
-    text-align: left;
-  }
-  .info-box li {
-    margin-bottom: 0.6rem;
-    font-size: 1.15rem;
-  }
+/* Social Links */
+.social-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.social-links a {
+  color: white;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.social-links a:hover { transform: translateY(-4px); color: #facc15; }
+.social-links a[href*="linkedin"] { color: #0077b5; }
+.social-links a[href*="github"] { color: #000000; }
+.social-links a[href*="instagram"] { color: #e1306c; }
 
-  /* Experience & Education */
-  .item-title {
-    font-weight: 700;
-    font-size: 1.35rem;
-    color: #111827;
-    margin-bottom: 0.25rem;
-    user-select: none;
-  }
-  .item-date {
-    font-size: 1rem;
-    color: #6b7280;
-    margin-bottom: 1rem;
-    user-select: none;
-  }
+/* ===== SECTIONS ===== */
+section { padding: 4rem 2rem; text-align: center; }
+h2 { font-size: 2.6rem; color: var(--accent); margin-bottom: 2rem; }
 
-  /* Skills */
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 0;
-      margin: 0;
-      justify-content: center;
-    }
-    .skill-item {
-      background: #e0e7ff;
-      color: #3730a3;
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      border-radius: 2rem;
-      box-shadow: 0 5px 10px rgb(99 102 241 / 0.3);
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .skill-icon {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
-    }
 
-  /* Certificates Gallery */
-  .certificates-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    gap: 2rem;
-    max-width: 900px;
-    margin: auto;
-  }
-  .certificate-frame {
-    position: relative;
-    background: #f9fafb;
-    border-radius: 0.75rem;
-    box-shadow: 0 8px 24px rgb(99 102 241 / 0.25);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .certificate-frame:hover {
-    box-shadow: 0 14px 40px rgb(99 102 241 / 0.45);
-    transform: translateY(-6px);
-  }
-  .certificate-frame img {
-    width: 100%;
-    display: block;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  .title-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(99,102,241,0.9);
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 1rem;
-    user-select: none;
-  }
 
-  /* Projects */
-  .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    max-width: 900px;
-    margin: auto;
-  }
-  .project-card {
-    background: white;
-    border-radius: 1.5rem 1.5rem 1.5rem 3rem / 2rem 2rem 2rem 4rem;
-    box-shadow: 0 16px 40px rgb(37 99 235 / 0.15);
-    padding: 2rem 2.8rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .project-card:hover {
-    box-shadow: 0 25px 60px rgb(37 99 235 / 0.3);
-    transform: translateY(-10px);
-  }
-  .project-title {
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #1e40af;
-    margin-bottom: 0.8rem;
-    user-select: none;
-  }
-  .project-desc {
-    font-size: 1.15rem;
-    line-height: 1.5;
-    color: #4b5563;
-    user-select: text;
-  }
+/* ===== ABOUT ===== */
+#about {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px var(--shadow);
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
 
-  /* Google Cloud Achievements */
-  .google-cloud-text {
-    max-width: 700px;
-    margin: auto;
-    color: #374151;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    user-select: text;
-  }
-  .google-cloud-text strong {
-    color: #1e40af;
-  }
+/* ===== EXPERIENCE ===== */
+#experience {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px var(--shadow);
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: left;
+}
+#experience h2 { text-align: center; }
+.exp-item h3 { color: var(--accent); font-size: 1.3rem; }
+.exp-item ul { margin-left: 1.5rem; line-height: 1.6; }
 
-  /* Footer */
-  footer {
-    background: #1e40af;
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-    font-weight: 500;
-    font-size: 1.2rem;
-    user-select: none;
-  }
+/* ===== EDUCATION ===== */
+#education {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px var(--shadow);
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+.edu-card { background: var(--bg); padding: 2rem; border-radius: 1rem; box-shadow: 0 8px 24px var(--shadow); }
+.edu-card h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2.7rem;
-    }
-    h2 {
-      font-size: 2.4rem;
-    }
-    .project-title {
-      font-size: 1.4rem;
-    }
-    .project-desc {
-      font-size: 1rem;
-    }
-  }
+/* ===== SKILLS ===== */
+#skills .skills-list {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 1rem;
+}
+.skill-item {
+  background: #e0e7ff;
+  color: #1e3a8a;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(99,102,241,0.3);
+}
+
+.skill-item:hover { transform: scale(1.08); }
+.skill-icon { width: 22px; height: 22px; }
+
+
+body.dark .skill-item { background: #1e293b; color: #e0e7ff; }
+
+/* ===== CERTIFICATES ===== */
+.certificates-gallery {
+  display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 2rem; max-width: 900px; margin: auto;
+}
+.certificate-frame { background: var(--card-bg); border-radius: 1rem; box-shadow: 0 8px 24px var(--shadow); overflow: hidden; }
+.certificate-frame img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.title-overlay { background: var(--accent); color: white; font-weight: 700; font-size: 1.1rem; padding: 1rem; }
+
+/* ===== PROJECTS ===== */
+.projects-list {
+  display: flex; flex-direction: column; gap: 2rem;
+  max-width: 900px; margin: auto;
+}
+.project-card { background: var(--card-bg); border-radius: 1rem; box-shadow: 0 8px 30px var(--shadow); padding: 2rem; transition: transform 0.3s ease; }
+.project-card:hover { transform: translateY(-6px); }
+.project-title { color: var(--accent); font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+/* ===== GOOGLE CLOUD ===== */
+#google-clouds {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px var(--shadow);
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: left;
+}
+.google-cloud-text strong { color: var(--accent); }
+
+/* ===== CONTACT ===== */
+#contact {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #e0f2fe;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(14,165,233,0.3);
+  color: #075985;
+}
+body.dark #contact {
+  background: #1e293b;
+  color: #e2e8f0;
+  box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+}
+#contact a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+#contact a:hover { text-decoration: underline; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+
+
 </style>
 </head>
 <body>
-  <header>
-    <div class="logo" aria-label="Portfolio owner name" data-aos="zoom-in" data-aos-duration="1000">
-      <span>Gounder Priyanka</span>
-    </div>
-    <nav aria-label="Primary Navigation">
-      <ul>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#certificates" class="nav-link">Certificates</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#google-clouds" class="nav-link">Google Cloud</a></li>
-        <li><a href="mailto:gounderpriyanka4@gmail.com" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="logo">Gounder Priyanka</div>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#google-clouds">Google Cloud</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+</header>
 
-  <main>
-<section class="hero" id="home" tabindex="0">
-  <h1>Hello, I’m Priyanka</h1>
-  <p>Aspiring Full-Stack Developer and Google Cloud GenAI Study Jam Graduate driving innovation with cloud computing &amp; AI.</p>
-  <a href="https://www.cloudskillsboost.google/public_profiles/41405d57-7c7c-44f8-9057-088181c63bae" target="_blank" rel="noopener noreferrer" aria-label="Google Cloud GenAI Badge Link" class="badge" style="cursor:pointer; display: inline-flex; align-items: center; gap: 0.8rem; background: white; padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 700; font-size: 1.2rem; color: #2563eb; box-shadow: 0 6px 16px rgb(74 144 226 / 0.4); text-decoration: none;">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="width: 28px; height: 28px; fill: #2563eb;">
-      <path d="M12 2L3 6v6c0 5.25 3.75 9.75 9 10 5.25-.25 9-4.75 9-10V6l-9-4zm0 2.25l6 2.5v3.5a7.496 7.496 0 0 1-12 6.4V10.8L12 4.25zm0 13.5c-3.97 0-7.18-3.21-7.18-7.18 0-.13.01-.26.02-.39L15 13v2.5c0 .97-.79 1.75-1.75 1.75z"/>
-    </svg>
-    Google Cloud GenAI
-  </a>
+<!-- Hero -->
+<section class="hero">
+  <h1><span class="typing">I'm Priyanka 👩‍💻</span></h1>
+  <p>AI & Web Developer | Cloud Enthusiast | Creative Problem Solver</p>
+  <a href="https://www.cloudskillsboost.google/public_profiles/41405d57-7c7c-44f8-9057-088181c63bae" class="btn-primary" target="_blank">View Google Cloud Profile</a>
+
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/gounder-priyanka-811108290" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://github.com/Gounderpriyanka" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+  </div>
 </section>
 
-
-    <section id="about" tabindex="0" aria-labelledby="about-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #e0f2fe; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3); text-align: center; color: #0369a1; font-family: 'Poppins', sans-serif;">
-  <h2 id="about-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; user-select: none;">☁️ About Me</h2>
-  <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;">
-    Hi! I’m <strong>Priyanka</strong>, an aspiring Cloud Developer ☁️ and Python enthusiast 🐍 with a passion for mastering Data Structures & Algorithms 📚.
-  </p>
-  <p style="font-size: 1.15rem; line-height: 1.6; color: #075985; user-select: text;">
-    I specialize in building AI-powered applications using Google Cloud’s GenAI tools 🤖 like Gemini and Streamlit. I enjoy turning complex problems into elegant cloud solutions 🚀 and continuously expanding my skills through hands-on projects and certifications.
-  </p>
-  <p style="font-size: 1.15rem; line-height: 1.6; color: #075985; user-select: text; margin-top: 1rem;">
-    Proud member since 2024 | Gold League ⭐ with 22,095 points earned through dedication and real-world cloud experience.
-  </p>
+<!-- About -->
+<section id="about">
+  <h2>☁️ About Me</h2>
+  <p>A passionate Cloud & Web Developer who loves blending AI with the web. Skilled in building cloud-integrated, AI-powered web apps using Python, JavaScript, Streamlit, and Google Cloud tools.</p>
 </section>
 
-
-   <section id="experience" tabindex="0" aria-labelledby="experience-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #f0f9ff; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2); color: #0c4a6e; font-family: 'Poppins', sans-serif; text-align: center;">
-  <h2 id="experience-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; user-select: none;">💼 Experience</h2>
-  <div role="article" style="text-align: left; max-width: 600px; margin: 0 auto;">
-    <div style="font-weight: 700; font-size: 1.5rem; margin-bottom: 0.25rem; user-select: none;">Accountant @ Regius Cargo International Company</div>
-    <div style="font-size: 1rem; color: #2563eb; margin-bottom: 1rem; user-select: none;">June 2024 – November 2024</div>
-    <ul style="font-size: 1.15rem; line-height: 1.6; padding-left: 1.2rem; color: #134e8a;">
-      <li>📄 Managed daily accounting tasks including invoicing, billing, and ledger maintenance</li>
-      <li>📊 Assisted in financial record keeping and report generation</li>
-      <li>🤝 Coordinated with clients and vendors for smooth transaction processing</li>
-      <li>💻 Used <strong>Tally Prime</strong> for accounting and inventory management</li>
+<!-- Experience -->
+<section id="experience">
+  <h2>💼 Experience</h2>
+  <div class="exp-item">
+    <h3>Accounts & Inventory Assistant | Regius Cargo International Company</h3>
+    <p>August 2024 – January 2025</p>
+    <ul>
+      <li>Managed financial records and processed invoices using Tally Prime.</li>
+      <li>Coordinated with clients and vendors for smooth operations.</li>
+      <li>Improved accuracy in transaction processing and reporting.</li>
     </ul>
   </div>
 </section>
 
-
-    <section id="education" tabindex="0" aria-labelledby="education-heading" style="max-width: 700px; margin: 3rem auto; padding: 2rem; background: #f0f9ff; border-radius: 1rem; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2); color: #0c4a6e; font-family: 'Poppins', sans-serif; text-align: center;">
-  <h2 id="education-heading" style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; user-select: none;">🎓 Education</h2>
-  <div role="article" style="text-align: left; max-width: 600px; margin: 0 auto; font-size: 1.15rem; line-height: 1.6; color: #134e8a;">
-    <p>📘 <strong>SSC</strong> at Jay Somnath School – 72%</p>
-    <p>📗 <strong>HSC</strong> at Doon International School – 43%</p>
-    <p>🎓 <strong>Bachelor of Computer Application</strong> at Silver Oak University – 8.91 CGPA</p>
+<!-- Education -->
+<section id="education">
+  <h2>🎓 Education</h2>
+  <div class="edu-card">
+    <h3>Bachelor of Computer Applications (BCA)</h3>
+    <p>Silver Oak University, Ahmedabad | CGPA: 8.91 / 10 | Year: 2026 (Expected)</p>
   </div>
 </section>
 
+<!-- Skills -->
+<section id="skills">
+  <h2>🧠 Skills</h2>
+  <div class="skills-list">
+    <div class="skill-item"><i class="devicon-html5-plain colored skill-icon"></i> HTML</div>
+    <div class="skill-item"><i class="devicon-css3-plain colored skill-icon"></i> CSS</div>
+    <div class="skill-item"><i class="devicon-javascript-plain colored skill-icon"></i> JavaScript</div>
+    <div class="skill-item"><i class="devicon-react-original colored skill-icon"></i> React</div>
+    <div class="skill-item"><i class="devicon-python-plain colored skill-icon"></i> Python</div>
+    <div class="skill-item"><i class="devicon-nodejs-plain colored skill-icon"></i> Node.js</div>
+    <div class="skill-item"><i class="devicon-mongodb-plain colored skill-icon"></i> MongoDB</div>
+    <div class="skill-item"><i class="devicon-github-original colored skill-icon"></i> GitHub</div>
+    <div class="skill-item"><i class="devicon-googlecloud-plain colored skill-icon"></i> Google Cloud</div>
+  </div>
+</section>
 
-  <section id="skills" tabindex="0" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <ul class="skills-list">
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /> JavaScript</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" /> HTML5</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" /> CSS3</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" /> Node.js</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" /> GitHub</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /> Python</li>
-        <li class="skill-item"><img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /> MongoDB</li>
-        <li class="skill-item">🎨 UI/UX Design</li>
-        <li class="skill-item">🛠️ Debugging</li>
-        <li class="skill-item">💡 Problem Solving</li>
-      </ul>
-    </section>
+<!-- Certificates -->
+<section id="certificates">
+  <h2>🏆 Certificates</h2>
+  <div class="certificates-gallery">
+    <div class="certificate-frame">
+      <img src="Gen AI.jpg" alt="Gen AI Study Jams Certificate" />
+      <div class="title-overlay">Gen AI Study Jams (Google Cloud)</div>
+    </div>
+  </div>
+</section>
 
-    <section id="certificates" tabindex="0" aria-labelledby="certificates-heading">
-      <h2 id="certificates-heading">Certificates ☁️</h2>
-      <div class="certificates-gallery" aria-label="Gallery of Certificates">
-        <figure tabindex="0" class="certificate-frame" role="group" aria-label="Gen AI Study Jams Certificate">
-          <img src="Gen AI.jpg" alt="Gen AI Study Jams Certificate" />
-          <div class="title-overlay">Gen AI Study Jams (Google Cloud)</div>
-        </figure>
-        <!-- Add more certificates similarly -->
-      </div>
-    </section>
+<!-- Projects -->
+<section id="projects">
+  <h2>💻 Projects</h2>
+  <div class="projects-list">
+    <div class="project-card">
+      <h3 class="project-title">AI Document Analyzer</h3>
+      <p class="project-desc">Built an intelligent web app using Python, Streamlit, and Gemini API to summarize, analyze sentiment, and extract document insights.</p>
+    </div>
+    <div class="project-card">
+      <h3 class="project-title">Personal Portfolio</h3>
+      <p class="project-desc">Developed a responsive portfolio showcasing my AI and web development skills using HTML, CSS, and JavaScript.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="projects" tabindex="0" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects 💻</h2>
-      <div class="projects-list">
-        <article class="project-card" tabindex="0" aria-labelledby="proj1-title" role="region">
-          <h3 class="project-title" id="proj1-title">Personal Portfolio</h3>
-          <p class="project-desc">Developed a personal portfolio website to showcase skills and projects using HTML, CSS, and JavaScript.</p>
-        </article>
-        <!-- Add other projects here -->
-      </div>
-    </section>
+<!-- Google Cloud -->
+<section id="google-clouds">
+  <h2>☁️ Google Cloud Achievements</h2>
+  <div class="google-cloud-text">
+    <p>Completed 15+ Google Cloud Skill Badges covering GenAI, Infrastructure, API Development, and Data Analytics. Gold League Member with 22,000+ points!</p>
+    <p><strong>AI/ML Pro:</strong> Built GenAI apps with Gemini & Streamlit, mastered Vision & Speech APIs.</p>
+    <p><strong>Cloud Ninja:</strong> Deployed scalable apps with Cloud Run, API Gateway, and Pub/Sub.</p>
+  </div>
+</section>
 
-    <section id="google-clouds" tabindex="0" aria-labelledby="google-clouds-heading">
-      <h2 id="google-clouds-heading">Google Cloud Achievements ☁️</h2>
-      <div class="google-cloud-text">
-        <p>🚀 Just stacked 15+ GCP badges in record time! From AI magic ✨ to cloud infrastructure ⚙️, here’s the highlights:</p>
-        <p>🤖 <strong>AI/ML Pro</strong><br>
-        ▸ Built GenAI apps with Gemini + Streamlit<br>
-        ▸ Taught AI to see (Vision API) and hear (Speech API)<br>
-        ▸ Mastered prompt design like an AI whisperer</p>
-        <p>🛠️ <strong>Cloud Ninja</strong><br>
-        ▸ Deployed apps 3 ways (App Engine, Cloud Run)<br>
-        ▸ Made APIs talk (API Gateway, Pub/Sub)<br>
-        ▸ Tamed data beasts (Dataplex, Looker)</p>
-        <p>📊 <strong>Bonus Skills</strong><br>
-        ▸ Google Sheets ≠ just for groceries<br>
-        ▸ Cloud Storage > my messy Downloads folder</p>
-        <p>🔥 <strong>Why It Matters?</strong><br>
-        Real skills &gt; Certificates. Now applying this to smarter cloud projects and AI-powered solutions.</p>
-        <p>Drop a ♻️ if you’re cloud-cert-crazy too!</p>
-      </div>
-    </section>
-  </main>
+<!-- Contact -->
+<section id="contact">
+  <h2>📩 Contact</h2>
+  <p>Let's connect! Reach out at <a href="mailto:gounderpriyanka4@gmail.com">gounderpriyanka4@gmail.com</a></p>
+</section>
 
-  <footer>
-    &copy; 2024 Gounder Priyanka Portfolio
-  </footer>
+<footer>
+  © 2025 Gounder Priyanka | Built with 💙 using HTML, CSS & JS
+</footer>
+
+<!-- FontAwesome -->
+<!-- Updated Font Awesome CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+
+
+<script>
+// === Dark/Light Mode ===
+const toggleBtn = document.getElementById("themeToggle");
+const body = document.body;
+
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark");
+  toggleBtn.textContent = "🌞";
+}
+toggleBtn.addEventListener("click", () => {
+  body.classList.toggle("dark");
+  const isDark = body.classList.contains("dark");
+  toggleBtn.textContent = isDark ? "🌞" : "🌙";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+
+// ===== Floating Clouds and Bubbles =====
+function createCloudsAndBubbles() {
+  const bg = document.querySelector(".background");
+  for (let i = 0; i < 6; i++) {
+    const cloud = document.createElement("div");
+    cloud.classList.add("cloud");
+    cloud.style.left = Math.random() * 100 + "vw";
+    cloud.style.animationDuration = 40 + Math.random() * 60 + "s";
+    bg.appendChild(cloud);
+  }
+  for (let i = 0; i < 10; i++) {
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.width = bubble.style.height = 20 + Math.random() * 80 + "px";
+    bubble.style.animationDuration = 30 + Math.random() * 50 + "s";
+    bg.appendChild(bubble);
+  }
+}
+createCloudsAndBubbles();
+
+</script>
 </body>
 </html>
-
