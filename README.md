@@ -44,6 +44,8 @@ Example:
 
 ## 📂 Project Structure
 
+---
+
 root-folder/
 │
 ├── index.html
@@ -62,9 +64,9 @@ This portfolio represents my learning progress and skills. I will continue addin
 
 ## 📬 Contact
 
-Email: your-email@example.com  
-LinkedIn: https://linkedin.com/in/your-profile  
-GitHub: https://github.com/your-username  
+Email: gounderpriyanka4@gmail.com 
+LinkedIn: https://www.linkedin.com/in/gounder-priyanka-811108290/ 
+GitHub: https://github.com/Gounderpriyanka  
 
 ---
 
