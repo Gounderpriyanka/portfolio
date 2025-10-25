@@ -44,7 +44,7 @@ Example:
 
 ## 📂 Project Structure
 
----
+
 
 root-folder/
 │
@@ -64,9 +64,9 @@ This portfolio represents my learning progress and skills. I will continue addin
 
 ## 📬 Contact
 
-Email: gounderpriyanka4@gmail.com 
-LinkedIn: https://www.linkedin.com/in/gounder-priyanka-811108290/ 
-GitHub: https://github.com/Gounderpriyanka  
+📧Email: gounderpriyanka4@gmail.com 
+🔗LinkedIn: https://www.linkedin.com/in/gounder-priyanka-811108290/ 
+🔗GitHub: https://github.com/Gounderpriyanka  
 
 ---
 
