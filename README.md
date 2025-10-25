@@ -42,20 +42,6 @@ Example:
 
 ---
 
-## 📂 Project Structure
-
-
-
-root-folder/
-│
-├── index.html
-├── style.css
-├── script.js
-└── images
-
-
----
-
 ## 🎯 Purpose
 
 This portfolio represents my learning progress and skills. I will continue adding new AI/ML and cloud projects as I grow in my career.
@@ -64,8 +50,8 @@ This portfolio represents my learning progress and skills. I will continue addin
 
 ## 📬 Contact
 
-📧Email: gounderpriyanka4@gmail.com 
-🔗LinkedIn: https://www.linkedin.com/in/gounder-priyanka-811108290/ 
+📧Email: gounderpriyanka4@gmail.com.<br>
+🔗LinkedIn: https://www.linkedin.com/in/gounder-priyanka-811108290/ .<br> 
 🔗GitHub: https://github.com/Gounderpriyanka  
 
 ---
