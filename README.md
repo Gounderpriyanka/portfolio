@@ -7,7 +7,6 @@ Welcome to my portfolio website. This project highlights my journey in **web dev
 ## 🚀 Features
 
 ✔ Smooth scrolling full-screen layout  
-✔ Animated character navigation  
 ✔ Cloud and bubble effects in the background  
 ✔ About, Experience, Education, Projects, Contact sections  
 ✔ Fully responsive design  
